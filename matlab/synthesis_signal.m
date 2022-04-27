@@ -1,4 +1,4 @@
-% функция синтеза сигнала из фреймов
+% синтез сигнала из фреймов
 function [signal] = synthesis_signal(frame_array, remainder)
     [frame_size, N] = size(frame_array);
     half_frame = frame_size / 2;

@@ -1,5 +1,6 @@
-% функция разбиения сигнала на фреймы
-function [frame_array, remainder] = signal_to_frames(signal, frame_size)
+% разбиение сигнала на фреймы
+function [frame_array, remainder] = signal_to_frames(signal)
+    frame_size = NamedConst.Frame_size;
     half_frame = frame_size / 2;
     remainder = mod(length(signal), half_frame);
     N = fix(length(signal) / half_frame); % деление без остатка
