@@ -2,11 +2,11 @@
 function [frame_array, remainder] = signal_to_frames(signal)
     frame_size = NamedConst.Frame_size;
     half_frame = frame_size / 2;
-    remainder = mod(length(signal), half_frame);
     N = fix(length(signal) / half_frame); % деление без остатка
     frame_array = zeros(frame_size, N);
     window = hamming(frame_size);
     
+    remainder = mod(length(signal), half_frame);
     if remainder == 0
         N = N - 1;
     else

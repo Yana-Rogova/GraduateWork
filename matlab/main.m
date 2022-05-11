@@ -1,6 +1,6 @@
 close all; clear all;
 
-[input_signal, Fs] = audioread("voice.wav");
+[input_signal, Fs] = audioread("white_noise.wav");
 [frame_array, remainder] = signal_to_frames(input_signal);
 [noise, sub_noise] = start_noise(frame_array, NamedConst.Number_frames, Fs);
 [frame_array, segSNR_array] = processing_frames(frame_array, noise, sub_noise, Fs);

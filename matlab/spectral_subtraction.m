@@ -9,7 +9,7 @@ function [speech_abs2] = spectral_subtraction(input_signal_abs2, sub_noise_abs2,
     subSNR = zeros(NamedConst.N_bands, 1);
     
     for i = 1:NamedConst.N_bands
-        [subSNR(i), ~] = snr(input_signal_abs2(bands{i, 1}), sub_noise_abs2{i, 1});
+        subSNR(i) = snr(input_signal_abs2(bands{i, 1}), sub_noise_abs2{i, 1});
         
         if (subSNR(i) < -5)
             a(i) = 5;
@@ -24,7 +24,7 @@ function [speech_abs2] = spectral_subtraction(input_signal_abs2, sub_noise_abs2,
     end
     
     z = find(speech_abs2 < 0);
-    if~isempty(z)
+    if ~isempty(z)
          speech_abs2(z) = betta*input_signal_abs2(z);
     end
 end
