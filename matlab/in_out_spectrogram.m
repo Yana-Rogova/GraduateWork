@@ -1,4 +1,4 @@
-function [] = in_out_spectrogram(input_signal, output_signal, segSNR_array, N, Fs)
+function [] = in_out_spectrogram(input_signal, output_signal, segSNR_array, N, Fs, speech)
     % построение гистограмм
     
     frame_size = NamedConst.Frame_size;
@@ -13,13 +13,13 @@ function [] = in_out_spectrogram(input_signal, output_signal, segSNR_array, N, F
     subplot(5,2,7);
     stem((1:N)*frame_size/2/Fs, segSNR_array, 'Marker', 'none');
     graph_labels(["Отношение сигнал/шум исходного сигнала" "Время, с" "ОСШ, дБ"]);
-    axis ([frame_size/2/Fs, N*frame_size/2/Fs, -60, 30]);
+    axis ([frame_size/2/Fs, N*frame_size/2/Fs, -60, 60]);
     
     subplot(5,2,9); %subplot(212);
     stem((1:length(input_signal))/Fs, input_signal, 'Marker', 'none');
     graph_labels(["Исходный сигнал" "Время, с" "Амплитуда, дБ"]);
     axis([frame_size/2/Fs, N*frame_size/2/Fs, -0.75, 0.75]);
-    speech_detector(0.2, N, segSNR_array, Fs);
+    speech_detector(0.5, N, speech, Fs);
  
     % очищенный сигнал
     % получение значений ОСШ для очщенного сигнала    
@@ -37,12 +37,12 @@ function [] = in_out_spectrogram(input_signal, output_signal, segSNR_array, N, F
     subplot(5, 2, 8);%subplot(211);
     stem((1:N)*frame_size/2/Fs, segSNR_array_out(1:N), 'Marker', 'none');
     graph_labels(["Отношение сигнал/шум очищенного сигнала" "Время, с" "ОСШ, дБ"]);
-    axis ([frame_size/2/Fs, N*frame_size/2/Fs, -60, 30]);
+    axis ([frame_size/2/Fs, N*frame_size/2/Fs, -60, 60]);
     
     subplot(5, 2, 10);%subplot(212);    
     stem((1:length(output_signal))/Fs, output_signal, 'Marker', 'none');
     graph_labels(["Очищенный сигнал" "Время, с" "Амплитуда, дБ"]);    
     axis ([frame_size/2/Fs, N*frame_size/2/Fs, -0.75, 0.75]);
-    speech_detector(0.2, N, segSNR_array, Fs);    
+    speech_detector(0.5, N, speech, Fs);    
 end
 
