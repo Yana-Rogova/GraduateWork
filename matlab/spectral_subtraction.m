@@ -13,9 +13,9 @@ function [speech_abs2] = spectral_subtraction(input_signal_abs2, sub_noise_abs, 
         subSNR(i) = snr(input_signal_abs2(bands{i, 1}), sub_noise_abs2);
         
         if (subSNR(i) < -5)
-            a(i) = 5;
+            a(i) = 10;
         elseif (subSNR(i) <= 20)
-            a(i) = 4 - 3 / 20 * subSNR(i);
+            a(i) = 8 - 3 / 20 * subSNR(i);
         else
             a(i) = 1;
         end

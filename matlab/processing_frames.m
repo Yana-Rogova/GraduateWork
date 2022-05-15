@@ -8,9 +8,15 @@ function [frame_array, segSNR_array, speech] = processing_frames(frame_array, no
     Xtmp = Xmin;
     p = zeros(1, frame_size/2+1);
     time_counter = 0;
+    
+    %определение фреймов, содержащих речь
+    %speech = voice_activity_detection2(frame_array);
+    
+    
+    %обработка фрейм за фреймом
     for i = 1:N
         [frame_array(:, i), new_noise_abs, sub_noise_abs, segSNR_array(i), speech(i), p, Xmin, Xtmp, time_counter] = ...
-            processing_frame(frame_array(:, i), noise_abs, sub_noise_abs, Fs, p, Xmin, Xtmp, time_counter, i);
+            processing_frame(frame_array(:, i), noise_abs, sub_noise_abs, Fs, p, Xmin, Xtmp, time_counter, i, speech(i));
         noise_abs = new_noise_abs;
     end
 end

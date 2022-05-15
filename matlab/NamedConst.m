@@ -1,6 +1,6 @@
 classdef NamedConst
    properties (Constant)
-      N_thr = 5.5            % Пороговое значение присутствия речи
+      N_thr = 6            % Пороговое значение присутствия речи
       Frame_size = 512      % Размер фрейма
       Number_frames = 5     % Количество фреймов для определения начального шума
       
@@ -14,8 +14,8 @@ classdef NamedConst
       a10 = 0.1;
       alpha = 0.2;
       
-      noise_alpha_d = 0.99;
       noise_alpha_p = 0.1;
+      noise_alpha_d = 0.99;
       noise_delta = 1;
    end
 end
