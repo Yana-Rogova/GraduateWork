@@ -1,4 +1,4 @@
-function [speech_abs2] = spectral_subtraction(input_signal_abs2, sub_noise_abs, Fs)
+function [speech_abs2] = spectral_subtraction(input_signal_abs2, noise_abs, Fs)
     % субполосное спектральное вычитание
     betta = NamedConst.Substraction_betta;
     d = NamedConst.Substraction_delta;
@@ -9,13 +9,13 @@ function [speech_abs2] = spectral_subtraction(input_signal_abs2, sub_noise_abs, 
     subSNR = zeros(NamedConst.N_bands, 1);
     
     for i = 1:NamedConst.N_bands
-        sub_noise_abs2 = sub_noise_abs{i, 1} .^2;
+        sub_noise_abs2 = noise_abs(bands{i, 1}) .^2;
         subSNR(i) = snr(input_signal_abs2(bands{i, 1}), sub_noise_abs2);
         
         if (subSNR(i) < -5)
-            a(i) = 10;
+            a(i) = 8;
         elseif (subSNR(i) <= 20)
-            a(i) = 8 - 3 / 20 * subSNR(i);
+            a(i) = 5 - 3 / 20 * subSNR(i);
         else
             a(i) = 1;
         end

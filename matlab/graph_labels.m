@@ -3,6 +3,6 @@ function [] = graph_labels(str_array)
     title(str_array(1));
     xlabel(str_array(2));
     ylabel(str_array(3));
-    set(gca, 'FontName', 'Times New Roman', 'FontSize', 14);
+    set(gca, 'FontName', 'Times New Roman', 'FontSize', 18);
 end
 

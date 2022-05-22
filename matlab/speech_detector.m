@@ -18,6 +18,6 @@ function [] = speech_detector(height, N, speech, Fs)
     dbl_detector_array(2:2:2*N-1) = detector_array(2:N);
     
     hold on;    
-    stairs((1:0.5:N)*NamedConst.Frame_size/2/Fs, dbl_detector_array);
+    stairs((1:0.5:N)*NamedConst.Frame_size/2/Fs, dbl_detector_array, 'LineWidth', 1);
 end
 

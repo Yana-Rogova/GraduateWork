@@ -24,8 +24,8 @@ function [] = in_out_spectrogram(input_signal, output_signal, segSNR_array, N, F
     % очищенный сигнал
     % получение значений ОСШ для очщенного сигнала    
     buf = signal_to_frames(output_signal);
-    [noise, sub_noise] = start_noise(buf, 5, Fs);
-    [~, segSNR_array_out] = processing_frames(buf, noise, sub_noise, Fs);
+    [noise] = start_noise(buf, 5);
+    [~, segSNR_array_out] = processing_frames(buf, noise, Fs);
     
     %figure;
     subplot(5, 2, [2, 4, 6]);
@@ -45,4 +45,3 @@ function [] = in_out_spectrogram(input_signal, output_signal, segSNR_array, N, F
     axis ([frame_size/2/Fs, N*frame_size/2/Fs, -0.75, 0.75]);
     speech_detector(0.5, N, speech, Fs);    
 end
-
